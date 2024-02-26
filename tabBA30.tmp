@@ -1,13 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://6qswu3ufqyu3"]
+[gd_scene load_steps=17 format=3 uid="uid://6qswu3ufqyu3"]
 
 [ext_resource type="Script" path="res://table.gd" id="1_ppind"]
 [ext_resource type="Script" path="res://Container.gd" id="1_vnnh4"]
 [ext_resource type="Script" path="res://Card.gd" id="1_xfs41"]
 [ext_resource type="Texture2D" uid="uid://y3urcav8mkbp" path="res://back.png" id="2_nwybp"]
-[ext_resource type="Script" path="res://Dealer.gd" id="2_pn7gw"]
 [ext_resource type="Script" path="res://Button.gd" id="3_6laae"]
 [ext_resource type="Script" path="res://Start.gd" id="7_y412x"]
-[ext_resource type="Script" path="res://Stand.gd" id="8_p7u8e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gg4jg"]
 line_spacing = 10.0
@@ -45,9 +43,6 @@ load_path = "res://.godot/imported/suits.png-06c9153702c08618460fb389df7f1d78.ct
 atlas = SubResource("CompressedTexture2D_1aoru")
 region = Rect2(104, 160, 688, 800)
 
-[sub_resource type="LabelSettings" id="LabelSettings_afpf7"]
-font_size = 150
-
 [node name="Table" type="Node2D"]
 script = ExtResource("1_ppind")
 
@@ -66,7 +61,7 @@ offset_top = 46.0001
 offset_right = 1135.0
 offset_bottom = 360.0
 scale = Vector2(0.645778, 0.536956)
-script = ExtResource("2_pn7gw")
+script = ExtResource("1_vnnh4")
 metadata/_edit_group_ = true
 
 [node name="Card" type="Node2D" parent="."]
@@ -984,7 +979,7 @@ offset_top = 540.0
 offset_right = 553.0
 offset_bottom = 571.0
 scale = Vector2(1.79759, 1.17655)
-text = "Hit"
+text = "dhit"
 script = ExtResource("3_6laae")
 
 [node name="Start" type="Button" parent="."]
@@ -995,32 +990,3 @@ offset_bottom = 565.0
 text = "start
 "
 script = ExtResource("7_y412x")
-
-[node name="Stand" type="Button" parent="."]
-visible = false
-offset_left = 605.0
-offset_top = 545.0
-offset_right = 672.0
-offset_bottom = 576.0
-text = "stand
-"
-script = ExtResource("8_p7u8e")
-
-[node name="Lose" type="Label" parent="."]
-visible = false
-offset_left = 210.646
-offset_top = 176.463
-offset_right = 995.646
-offset_bottom = 609.463
-text = "YOU LOSE
-"
-label_settings = SubResource("LabelSettings_afpf7")
-
-[node name="Win" type="Label" parent="."]
-visible = false
-offset_left = 210.0
-offset_top = 177.0
-offset_right = 995.0
-offset_bottom = 610.0
-text = "YOU WIN!!!"
-label_settings = SubResource("LabelSettings_afpf7")

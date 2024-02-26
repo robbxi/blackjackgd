@@ -1,20 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://6qswu3ufqyu3"]
+[gd_scene load_steps=16 format=3 uid="uid://6qswu3ufqyu3"]
 
 [ext_resource type="Script" path="res://table.gd" id="1_ppind"]
 [ext_resource type="Script" path="res://Container.gd" id="1_vnnh4"]
 [ext_resource type="Script" path="res://Card.gd" id="1_xfs41"]
 [ext_resource type="Texture2D" uid="uid://y3urcav8mkbp" path="res://back.png" id="2_nwybp"]
-[ext_resource type="Script" path="res://Dealer.gd" id="2_pn7gw"]
 [ext_resource type="Script" path="res://Button.gd" id="3_6laae"]
-[ext_resource type="Script" path="res://Start.gd" id="7_y412x"]
-[ext_resource type="Script" path="res://Stand.gd" id="8_p7u8e"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_gg4jg"]
+[sub_resource type="LabelSettings" id="LabelSettings_qeo0y"]
 line_spacing = 10.0
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_es63r"]
-resource_local_to_scene = true
+[sub_resource type="LabelSettings" id="LabelSettings_vw7lq"]
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xlq10"]
@@ -45,31 +41,18 @@ load_path = "res://.godot/imported/suits.png-06c9153702c08618460fb389df7f1d78.ct
 atlas = SubResource("CompressedTexture2D_1aoru")
 region = Rect2(104, 160, 688, 800)
 
-[sub_resource type="LabelSettings" id="LabelSettings_afpf7"]
-font_size = 150
-
 [node name="Table" type="Node2D"]
 script = ExtResource("1_ppind")
 
-[node name="Player" type="Container" parent="."]
-offset_left = 299.0
-offset_top = 340.0
-offset_right = 1120.0
-offset_bottom = 654.0
-scale = Vector2(0.645778, 0.536956)
+[node name="Container" type="Container" parent="."]
+offset_left = 215.0
+offset_top = 24.0
+offset_right = 1036.0
+offset_bottom = 338.0
 script = ExtResource("1_vnnh4")
-metadata/_edit_group_ = true
-
-[node name="Dealer" type="Container" parent="."]
-offset_left = 314.0
-offset_top = 46.0001
-offset_right = 1135.0
-offset_bottom = 360.0
-scale = Vector2(0.645778, 0.536956)
-script = ExtResource("2_pn7gw")
-metadata/_edit_group_ = true
 
 [node name="Card" type="Node2D" parent="."]
+visible = false
 position = Vector2(1, 3)
 script = ExtResource("1_xfs41")
 suit = 1
@@ -81,12 +64,11 @@ texture_repeat = 1
 position = Vector2(192, 128)
 offset = Vector2(-192, -128)
 texture = ExtResource("2_nwybp")
-texture_offset = Vector2(2.045, 2.07)
-texture_scale = Vector2(5.5, 5.5)
+texture_offset = Vector2(-187.99, -124.13)
+texture_scale = Vector2(5.345, 5.345)
 polygon = PackedVector2Array(194, 130, 197, 128, 200, 128, 312, 128, 315, 128, 318, 130, 320, 133, 320, 136, 320, 304, 320, 307, 318, 310, 315, 312, 312, 312, 200, 312, 197, 312, 194, 310, 192, 307, 192, 304, 192, 136, 192, 133)
 
 [node name="Front" type="Polygon2D" parent="Card"]
-visible = false
 texture_repeat = 1
 position = Vector2(192, 128)
 offset = Vector2(-192, -128)
@@ -101,7 +83,7 @@ offset_top = -1.0
 offset_right = 46.0
 offset_bottom = 22.0
 text = "10"
-label_settings = SubResource("LabelSettings_gg4jg")
+label_settings = SubResource("LabelSettings_qeo0y")
 
 [node name="Bottom" type="Label" parent="Card/Front/Rank"]
 offset_left = 123.0
@@ -111,7 +93,7 @@ offset_bottom = 207.0
 rotation = 3.14159
 text = "10
 "
-label_settings = SubResource("LabelSettings_es63r")
+label_settings = SubResource("LabelSettings_vw7lq")
 
 [node name="Diamonds" type="Node2D" parent="Card/Front"]
 visible = false
@@ -977,50 +959,11 @@ texture = SubResource("AtlasTexture_rnjk4")
 [node name="Face" type="Node2D" parent="Card/Front/Clubs"]
 visible = false
 
-[node name="Hit" type="Button" parent="."]
-visible = false
-offset_left = 514.0
-offset_top = 540.0
-offset_right = 553.0
-offset_bottom = 571.0
-scale = Vector2(1.79759, 1.17655)
-text = "Hit"
+[node name="Button" type="Button" parent="."]
+offset_left = 482.0
+offset_top = 513.0
+offset_right = 511.0
+offset_bottom = 544.0
+scale = Vector2(4.57063, 3.20766)
+text = "hit"
 script = ExtResource("3_6laae")
-
-[node name="Start" type="Button" parent="."]
-offset_left = 156.0
-offset_top = 530.0
-offset_right = 256.0
-offset_bottom = 565.0
-text = "start
-"
-script = ExtResource("7_y412x")
-
-[node name="Stand" type="Button" parent="."]
-visible = false
-offset_left = 605.0
-offset_top = 545.0
-offset_right = 672.0
-offset_bottom = 576.0
-text = "stand
-"
-script = ExtResource("8_p7u8e")
-
-[node name="Lose" type="Label" parent="."]
-visible = false
-offset_left = 210.646
-offset_top = 176.463
-offset_right = 995.646
-offset_bottom = 609.463
-text = "YOU LOSE
-"
-label_settings = SubResource("LabelSettings_afpf7")
-
-[node name="Win" type="Label" parent="."]
-visible = false
-offset_left = 210.0
-offset_top = 177.0
-offset_right = 995.0
-offset_bottom = 610.0
-text = "YOU WIN!!!"
-label_settings = SubResource("LabelSettings_afpf7")

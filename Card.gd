@@ -18,6 +18,7 @@ var Black = Color(0, 0, 0, 1)
 
 
 func displayCard(suit,rank,faceUp):
+	self.propagate_call("set_visible", [false])
 	if not faceUp:
 		var front = get_node("Front")
 		var back = get_node("Back")
@@ -27,6 +28,7 @@ func displayCard(suit,rank,faceUp):
 		
 	get_node("Front").visible = true
 	var rankNode = get_node("Front/Rank")
+	
 	if rankNode:
 		var topLabel = rankNode.get_node("Top")
 		var bottomLabel = rankNode.get_node("Bottom")
@@ -35,8 +37,10 @@ func displayCard(suit,rank,faceUp):
 				topLabel.label_settings.font_color = Red
 				bottomLabel.label_settings.font_color = Red
 			else:
-				topLabel.label_settings.font_color = Black
-				bottomLabel.label_settings.font_color = Black
+				topLabel.modulate = Black
+				bottomLabel.modulate = Black
+				
+				
 			
 			if rank == 1:
 				topLabel.text = "A"
@@ -58,7 +62,7 @@ func displayCard(suit,rank,faceUp):
 	else:
 		print("Rank Node not found")
 	
-	rankNode.visible = true
+	rankNode.propagate_call("set_visible", [true])
 	var suitNode;
 	if suit == Suit.HEART:
 		suitNode = get_node("Front/Hearts")
@@ -70,43 +74,44 @@ func displayCard(suit,rank,faceUp):
 		suitNode = get_node("Front/Spades")
 	
 	suitNode.visible = true
-	suitNode.get_node("Small").visible = true
+	suitNode.get_node("Small").propagate_call("set_visible", [true])
 	
 	if rank < 11:
 		suitNode.get_node("Numbers").visible = true
 	if rank == 1:
 		var ace = suitNode.get_node("Numbers/Ace")
-		ace.visible = true
+		ace.propagate_call("set_visible", [true])
 	elif rank == 2:
-		suitNode.get_node("Numbers/Two").visible = true
+		suitNode.get_node("Numbers/Two").propagate_call("set_visible", [true])
 	elif  rank == 3:
-		suitNode.get_node("Numbers/Ace").visible = true
-		suitNode.get_node("Numbers/Two").visible = true
+		suitNode.get_node("Numbers/Ace").propagate_call("set_visible", [true])
+		suitNode.get_node("Numbers/Two").propagate_call("set_visible", [true])
 	elif rank == 4:
-		suitNode.get_node("Numbers/Four").visible = true
+		suitNode.get_node("Numbers/Four").propagate_call("set_visible", [true])
 	elif rank == 5:
-		suitNode.get_node("Numbers/Ace").visible = true
-		suitNode.get_node("Numbers/Four").visible = true
+		suitNode.get_node("Numbers/Ace").propagate_call("set_visible", [true])
+		suitNode.get_node("Numbers/Four").propagate_call("set_visible", [true])
 	elif rank == 6:
-		suitNode.get_node("Numbers/Six").visible = true
+		suitNode.get_node("Numbers/Six").propagate_call("set_visible", [true])
 	elif rank == 7:
-		suitNode.get_node("Numbers/Six").visible = true
-		suitNode.get_node("Numbers/Seven").visible = true
+		suitNode.get_node("Numbers/Six").propagate_call("set_visible", [true])
+		suitNode.get_node("Numbers/Seven").propagate_call("set_visible", [true])
 	elif rank == 8:
-		suitNode.get_node("Numbers/Eight").visible = true
+		suitNode.get_node("Numbers/Eight").propagate_call("set_visible", [true])
 	elif rank == 9:
-		suitNode.get_node("Numbers/Eight").visible = true
-		suitNode.get_node("Numbers/Seven").visible = true
+		suitNode.get_node("Numbers/Eight").propagate_call("set_visible", [true])
+		suitNode.get_node("Numbers/Seven").propagate_call("set_visible", [true])
 	else:
-		suitNode.get_node("Numbers/Eight").visible = true
-		suitNode.get_node("Numbers/Ten").visible = true
+		suitNode.get_node("Numbers/Eight").propagate_call("set_visible", [true])
+		suitNode.get_node("Numbers/Ten").propagate_call("set_visible", [true])
 		
-
+func addCard():
+	displayCard(suit,rank,faceUp)
+	self.visible = true
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.visible = true
-	displayCard(suit,rank,faceUp)
-	
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
